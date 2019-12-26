@@ -3,8 +3,11 @@
 go学习项目
 
 ## 依赖初始化
-go mod init 模块名
-go mod download 依赖下载
+
+>go mod init 模块名
+
+>go mod download 依赖下载
+
 ## 配置信息
 ymal
 ini
@@ -49,13 +52,17 @@ GinLogger = NewLogger("src/logs/gin_engine.log", zapcore.InfoLevel, 128, 0, 0, t
 > gorm
 
 ## 包结构
-
 > components 项目组件
+
 > common 常量和实体
+
 > config 配置信息
+
 > controller 接口路由
+
 > openapi api接口实现
+
 > repository 数据库操作
+
 > thirds 三方插件
-接口
 
