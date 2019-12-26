@@ -1,13 +1,19 @@
-# 线上推理平台
+# go-lean
 ## 项目简介
-机器学习线预测服务
+go学习项目
 
 ## 依赖初始化
-go mod init 模块名
-go mod download 依赖下载
+
+>go mod init 模块名
+
+>go mod download 依赖下载
+
 ## 配置信息
-ymal
-ini
+
+>yaml
+
+>ini
+
 ## 日志说明
 
 * EngineLogger 引擎相关日志记录
@@ -37,7 +43,7 @@ GinLogger = NewLogger("src/logs/gin_engine.log", zapcore.InfoLevel, 128, 0, 0, t
 * logger.EngineLogger.Panic panic日志
 * logger.EngineLogger.Info info日志
 
-## 依赖包
+## 技术栈
 >gin-gonic 
 
 >zap
@@ -49,7 +55,17 @@ GinLogger = NewLogger("src/logs/gin_engine.log", zapcore.InfoLevel, 128, 0, 0, t
 > gorm
 
 ## 包结构
+> components 项目组件
 
-> engine 服务运行相关
+> common 常量和实体
 
-> app 应用相关代码
+> config 配置信息
+
+> controller 接口路由
+
+> openapi api接口实现
+
+> repository 数据库操作
+
+> thirds 三方插件
+
