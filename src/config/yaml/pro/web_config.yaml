@@ -1,0 +1,35 @@
+web:
+  context: fintech/inference
+  server:
+    port: 8090
+  datasource:
+    name: default
+    url: rc_indicatorsys_writer:Rc^sd2sdf#dfsd78@(10.0.9.183:5506)/rc_indicatorsys?charset=utf8&parseTime=True&loc=Local
+    active: 100
+    idle: 10
+    idleTimeout: 60
+rabbitmq:
+  address: amqp://rabbitadm:admin@192.168.155.235:5672/yx_mq
+redis:
+  cluster:
+    nodes:
+      - 10.0.4.37:6379
+      - 10.0.4.38:6379
+      - 10.0.4.39:6379
+      - 10.0.4.40:6379
+      - 10.0.4.41:6379
+      - 10.0.4.42:6379
+  pool:
+    maxIdle: 3
+    idleTimeout: 240
+    maxConnLifetime: 300
+  connection:
+    readTimeout: 15
+    writeTimeout: 15
+    connectTimeout: 15
+aimodel:
+  deploy:
+    hosts:
+      -10.0.51.53
+      -10.0.51.54
+brLoanIntentUrl: https://scutum.yxqiche.com/nebula/esb/bairong/applyLoanStr

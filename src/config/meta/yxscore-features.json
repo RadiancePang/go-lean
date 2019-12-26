@@ -1,0 +1,387 @@
+[
+  {
+    "id": "last1SelfQuery",
+    "name": "queryRecord.recordSummary.[latestMonthQueryrecordSum]",
+    "remark": "最近1个月内本人查询",
+    "type": "string",
+    "condition": "QUERY_RECORD_PERSON",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "credit_card_num",
+    "name": "creditDetail.[loancard]",
+    "remark": "贷记卡总张数",
+    "type": "string",
+    "hidden": true,
+    "formula": "map_size"
+  },
+  {
+    "id": "credit_card_rmb_num",
+    "remark": "贷记卡人民币账户个数",
+    "name": "creditDetail.[loancard]",
+    "hidden": true,
+    "type": "integer",
+    "filterField": "awardCreditInfo.currency",
+    "condition": "awardCreditInfo.currency=人民币账户",
+    "formula": "limit_count"
+  },
+  {
+    "id": "rmb_card_rt",
+    "remark": "人民币账户占比",
+    "name": "credit_card_rmb_num,credit_card_num",
+    "type": "string",
+    "formula": "two_num_percent"
+  },
+  {
+    "id": "reportCreateTime",
+    "remark": "报告创建时间",
+    "name": "header.messageHeader.reportCreateTime",
+    "formate": "yyyy.MM.ddHH:mm:ss",
+    "hidden": true,
+    "type": "Date",
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "firstLoancardOpenMonth",
+    "remark": "贷记卡最早发卡月份",
+    "name": "creditDetail.[loancard]",
+    "formate": "yyyy.MM.dd",
+    "hidden": true,
+    "filterField": "awardCreditInfo.openDate",
+    "condition": "state=正常",
+    "formula": "limit_early"
+  },
+  {
+    "id": "normal_card_earlist_mons",
+    "remark": "最早发卡日期距今月份数",
+    "name": "reportCreateTime,firstLoancardOpenMonth",
+    "type": "string",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "last1OrgLoanApproval",
+    "name": "queryRecord.recordSummary.[latestMonthQueryorgSum]",
+    "remark": "最近1个月内查询机构贷款审批",
+    "type": "integer",
+    "condition": "QUERY_LOAN_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "query_loan_num_12m",
+    "remark": "近12月内贷款审批查询次数",
+    "name": "reportCreateTime,queryRecord.[recordInfo].recordDetail",
+    "type": "String",
+    "filterField": "queryReason",
+    "condition": "queryReason=贷款审批;queryDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "limit_count",
+    "defaultCondition": "queryDate=diff_months(yyyy.MM.dd,12)"
+  },
+  {
+    "id": "query_loan_num_tt",
+    "remark": "贷款审批查询次数",
+    "name": "queryRecord.[recordInfo].recordDetail",
+    "type": "String",
+    "filterField": "queryReason",
+    "condition": "queryReason=贷款审批",
+    "formula": "limit_count"
+  },
+  {
+    "id": "max_card_bal_per_1y",
+    "remark": "最大信用卡额度使用率_1年内",
+    "name": "reportCreateTime,creditDetail.[loancard]",
+    "compute": "repayInfo.usedCreditLimitAmount/awardCreditInfo.creditLimitAmount",
+    "type": "String",
+    "condition": "state!=销户;awardCreditInfo.openDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "math_percent_max",
+    "defaultCondition": "state!=销户;state!=未激活;awardCreditInfo.openDate=diff_months(yyyy.MM.dd,12)"
+  },
+  {
+    "id": "creditAmount",
+    "remark": "授信总额",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.creditLimit",
+    "type": "String",
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "last1LoanApproval",
+    "remark": "最近1个月内贷款审批",
+    "name": "queryRecord.recordSummary.[latestMonthQueryrecordSum]",
+    "type": "string",
+    "condition": "QUERY_LOAN_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "normal_card_tot_amt_rmb_tt",
+    "remark": "正常人民币信用卡（总）额度_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total",
+    "defaultCondition": "state=正常"
+  },
+  {
+    "id": "normal_card_min_amt_tt",
+    "remark": "最小正常信用卡额度_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "string",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常",
+    "formula": "limit_min"
+  },
+  {
+    "id": "max_card_bal_per_rmb_1y",
+    "remark": "人民币最大信用卡额度使用率_1年内",
+    "name": "reportCreateTime,creditDetail.[loancard]",
+    "compute": "repayInfo.usedCreditLimitAmount/awardCreditInfo.creditLimitAmount",
+    "type": "String",
+    "condition": "state!=销户;state!=未激活;state!=呆账;awardCreditInfo.currency=人民币账户;awardCreditInfo.openDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "math_percent_max",
+    "defaultCondition": "state!=销户;state!=未激活;state!=呆账;awardCreditInfo.currency=人民币账户;awardCreditInfo.openDate=diff_months(yyyy.MM.dd,12)"
+  },
+  {
+    "id": "last1CreditApproval",
+    "remark": "最近1个月内信用卡审批",
+    "name": "queryRecord.recordSummary.[latestMonthQueryrecordSum]",
+    "type": "string",
+    "condition": "QUERY_CARD_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "card_overdue_accn_count",
+    "remark": "贷记卡逾期账户数",
+    "name": "reportCreateTime,creditDetail.[loancard]",
+    "type": "String",
+    "hidden": true,
+    "condition": "latest24MonthPaymentState.latest24State=isOverDue(12)",
+    "formula": "card_acc_count"
+  },
+  {
+    "id": "card_all_accn_count",
+    "remark": "贷记卡总账户数",
+    "name": "reportCreateTime,creditDetail.[loancard]",
+    "type": "String",
+    "hidden": true,
+    "condition": "state!=销户;state!=未激活",
+    "formula": "card_acc_count"
+  },
+  {
+    "id": "card_default_rt_1y",
+    "remark": "逾期账户占账户数之比_1年内",
+    "name": "card_overdue_accn_count,card_all_accn_count",
+    "type": "bigdecimal",
+    "formula": "two_num_percent"
+  },
+  {
+    "id": "last2YManageAfterLoan",
+    "remark": "最近2年内贷后管理",
+    "name": "queryRecord.recordSummary.[twoyearQueryrecordSum]",
+    "type": "string",
+    "condition": "QUERY_LOAN_AFTER",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "last1OrgCreditApproval",
+    "remark": "最近1个月内查询机构信用卡审批",
+    "name": "queryRecord.recordSummary.[latestMonthQueryorgSum]",
+    "type": "string",
+    "condition": "QUERY_CARD_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "query_card_num_12m",
+    "remark": "信用卡审批查询次数_12月内",
+    "name": "reportCreateTime,queryRecord.[recordInfo].recordDetail",
+    "type": "string",
+    "filterField": "queryReason",
+    "condition": "queryReason=信用卡审批;queryDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "limit_count",
+    "defaultCondition": "queryDate=diff_months(yyyy.MM.dd,12)"
+  },
+  {
+    "id": "query_card_num_1m",
+    "remark": "信用卡审批查询次数_1月内",
+    "name": "reportCreateTime,queryRecord.[recordInfo].[recordDetail]",
+    "type": "string",
+    "filterField": "queryReason",
+    "condition": "queryReason=信用卡审批;queryDate=diff_months(yyyy.MM.dd,1)",
+    "formula": "limit_count",
+    "defaultCondition": "queryDate=diff_months(yyyy.MM.dd,1)"
+  },
+  {
+    "id": "normal_loan_tot_amt_tt",
+    "remark": "正常贷款总金额_全量",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "contractInfo.creditLimitAmount",
+    "condition": "state=正常",
+    "formula": "limit_total",
+    "defaultCondition": "state=正常"
+  },
+  {
+    "id": "query_card_num_tt",
+    "remark": "信用卡审批查询次数_全量",
+    "name": "queryRecord.[recordInfo].recordDetail",
+    "type": "string",
+    "filterField": "queryReason",
+    "condition": "queryReason=信用卡审批",
+    "formula": "limit_count"
+  },
+  {
+    "id": "normal_card_max_amt_rmb_tt",
+    "remark": "正常人民币最大信用卡额度_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "string",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_max"
+  },
+  {
+    "id": "address_num_tt",
+    "name": "personalInfo.[residence]",
+    "remark": "用户地址信息数量_全量",
+    "type": "string",
+    "formula": "map_size"
+  },
+  {
+    "id": "normal_card_useramt",
+    "remark": "贷记卡人民币已用额度",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "repayInfo.usedCreditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total"
+  },
+  {
+    "id": "cardrmb_normal_totbal_per",
+    "remark": "正常人民币账户额度总使用率",
+    "name": "normal_card_useramt,normal_card_tot_amt_rmb_tt",
+    "type": "String",
+    "formula": "two_num_percent"
+  },
+  {
+    "id": "job_num_tt",
+    "name": "personalInfo.[professional]",
+    "remark": "用户工作信息数量_全量",
+    "type": "string",
+    "formula": "map_size"
+  },
+  {
+    "id": "query_loan_num_1m",
+    "remark": "贷款审批查询次数_1月内",
+    "name": "reportCreateTime,queryRecord.[recordInfo].recordDetail",
+    "type": "string",
+    "filterField": "queryReason",
+    "condition": "queryReason=贷款审批;queryDate=diff_months(yyyy.MM.dd,1)",
+    "formula": "limit_count",
+    "defaultCondition": "queryDate=diff_months(yyyy.MM.dd,1)"
+  },
+  {
+    "id": "min_card_bal_per_rmb_tt",
+    "remark": "人民币最小信用卡额度使用率_全量",
+    "name": "creditDetail.[loancard]",
+    "compute": "repayInfo.usedCreditLimitAmount/awardCreditInfo.creditLimitAmount",
+    "type": "String",
+    "condition": "state!=销户;state!=未激活;state!=呆账;awardCreditInfo.currency=人民币账户",
+    "formula": "math_percent_min",
+    "defaultCondition": "state!=销户;state!=未激活;state!=呆账;awardCreditInfo.currency=人民币账户"
+  },
+  {
+    "id": "normal_card_num_rmb_tt",
+    "remark": "正常人民币信用卡张数_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "string",
+    "filterField": "awardCreditInfo.currency",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_count"
+  },
+  {
+    "id": "unloan_max_amt_rmb_tt",
+    "remark": "未结清贷款最大金额（人民币）_全量",
+    "name": "creditDetail.[loan]",
+    "type": "string",
+    "filterField": "contractInfo.creditLimitAmount",
+    "condition": "state!=结清;contractInfo.currency=人民币",
+    "formula": "limit_max"
+  },
+  {
+    "id": "normal_card_tot_amt_tt",
+    "remark": "正常信用卡总额度_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常",
+    "formula": "limit_total",
+    "defaultCondition": "state=正常"
+  },
+  {
+    "id": "normal_card_max_amt_tt",
+    "remark": "最大正常信用卡额度_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "String",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常",
+    "formula": "limit_max"
+  },
+  {
+    "id": "loan_max_bal_rmb_tt",
+    "remark": "贷款最大余额（人民币）_全量",
+    "name": "creditDetail.[loan]",
+    "type": "String",
+    "filterField": "currAccountInfo.balance",
+    "condition": "contractInfo.currency=人民币",
+    "formula": "limit_max"
+  },
+  {
+    "id": "loan_tot_bal_rmb_tt",
+    "remark": "贷款总余额（人民币）_全量",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currAccountInfo.balance",
+    "condition": "contractInfo.currency=人民币",
+    "formula": "limit_total",
+    "defaultCondition": "currAccountInfo.balance=isNotEmpty()"
+  },
+  {
+    "id": "lastDateCardApprove",
+    "remark": "信用卡最晚查询日期",
+    "name": "queryRecord.recordInfo.[recordDetail]",
+    "formate": "yyyy.MM.dd",
+    "type": "String",
+    "hidden": true,
+    "filterField": "queryDate",
+    "condition": "queryReason=信用卡审批",
+    "formula": "limit_last"
+  },
+  {
+    "id": "qcard_earlist_days",
+    "remark": "信用卡审批最晚查询时间距今天数",
+    "name": "reportCreateTime,lastDateCardApprove",
+    "type": "string",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "loan_max_type_tt_WOE",
+    "remark": "借款金额最大的贷款类别_全量",
+    "name": "creditDetail.[loan]",
+    "type": "String",
+    "filterField": "contractInfo.creditLimitAmount",
+    "fetchField": "contractInfo.type",
+    "formula": "fetch_field_last"
+  },
+  {
+    "id": "education_WOE",
+    "remark": "学历",
+    "name": "personalInfo.identity.eduLevel",
+    "type": "String",
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "marital_WOE",
+    "remark": "婚姻状况",
+    "name": "personalInfo.identity.maritalState",
+    "type": "String",
+    "formula": "cal_iter_default"
+  }
+]

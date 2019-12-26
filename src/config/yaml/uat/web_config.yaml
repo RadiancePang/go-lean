@@ -1,0 +1,11 @@
+web:
+  context: fintech/inference
+  server:
+    port: 8090
+  datasource:
+    name: default
+    url: root:docker/indicatorsys_test_docker?charset=utf8&parseTime=True&loc=Local
+    active: 100
+    idle: 10
+    idleTimeout: 60
+brLoanIntentUrl: http://scutum.uat.yixincapital.com/nebula/esb/bairong/applyLoanStr

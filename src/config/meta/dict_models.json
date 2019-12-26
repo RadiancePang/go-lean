@@ -1,0 +1,147 @@
+[
+  {
+    "dictName": "DictSex",
+    "dictDesc": "性别",
+    "dictFeilds": [
+      {
+        "code": "2",
+        "name": "女",
+        "remark": "F"
+      },
+      {
+        "code": "1",
+        "name": "男",
+        "remark": "M"
+      }
+    ]
+  },
+  {
+    "dictName": "DictMarriage",
+    "dictDesc": "婚姻状态",
+    "dictFeilds": [
+      {
+        "code": "1",
+        "name": "已婚",
+        "remark": "1"
+      },
+      {
+        "code": "2",
+        "name": "未婚",
+        "remark": "0"
+      }
+    ]
+  },
+  {
+    "dictName": "DictOther",
+    "dictDesc": "其它",
+    "dictFeilds": [
+      {
+        "code": "0",
+        "name": "indu_unknow",
+        "remark": "21"
+      },
+      {
+        "code": "8",
+        "name": "prop_other",
+        "remark": "0"
+      },
+      {
+        "code": "0",
+        "name": "ocp_unknow",
+        "remark": "11"
+      },
+      {
+        "code": "0",
+        "name": "career_unknow",
+        "remark": "15"
+      }
+    ]
+  },
+  {
+    "dictName": "DictChanenlInfo1",
+    "dictDesc": "一级渠道",
+    "dictFeilds": [
+      {
+        "code": "1",
+        "name": "DIRECT_4S",
+        "remark": "直营"
+      },
+      {
+        "code": "2",
+        "name": "EXP_PROVIDER",
+        "remark": "代理商"
+      },
+      {
+        "code": "0",
+        "name": "OTHER",
+        "remark": "其它"
+      }
+    ]
+  },
+  {
+    "dictName": "DictChanenlInfo2",
+    "dictDesc": "二级渠道",
+    "dictFeilds": [
+      {
+        "code": "1",
+        "name": "EXP_PROVIDER",
+        "remark": "体验店"
+      },
+      {
+        "code": "2",
+        "name": "AREA_PROXY",
+        "remark": "区域代理商"
+      },
+      {
+        "code": "3",
+        "name": "DIRECT_4S",
+        "remark": "直营自拓4S店"
+      },
+      {
+        "code": "4",
+        "name": "VENDOR_4S",
+        "remark": "厂商4S店"
+      },
+      {
+        "code": "5",
+        "name": "DIRECT_COMPLEX",
+        "remark": "直营综合店"
+      },
+      {
+        "code": "6",
+        "name": "ALL_PROXY",
+        "remark": "全国代理商"
+      },
+      {
+        "code": "7",
+        "name": "BRANCH_DIRECT",
+        "remark": "分公司直营店"
+      },
+      {
+        "code": "8",
+        "name": "DIRECT_SENCOND",
+        "remark": "直营二手车"
+      },
+      {
+        "code": "9",
+        "name": "BRANCH_COMPLEX",
+        "remark": "经销商集团"
+      },
+      {
+        "code": "10",
+        "name": "EXP_DIRECT",
+        "remark": "淘车B2C"
+      },
+      {
+        "code": "11",
+        "name": "EXP_DIRECT",
+        "remark": "人人车直营"
+      },
+      {
+        "code": "0",
+        "name": "OTHER",
+        "remark": "其它"
+      }
+    ]
+  }
+]

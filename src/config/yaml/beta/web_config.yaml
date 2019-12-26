@@ -1,0 +1,35 @@
+web:
+  context: fintech/inference
+  server:
+    port: 9899
+  datasource:
+    name: default
+    url: mysql:mysql@(192.168.145.151:3306)/indicatorsys_test_docker?charset=utf8&parseTime=True&loc=Local
+    active: 100
+    idle: 10
+    idleTimeout: 60
+rabbitmq:
+  address: amqp://rabbitadm:admin@192.168.155.235:5672/yx_mq
+redis:
+  cluster:
+    nodes:
+      - 192.168.155.81:6379
+      - 192.168.155.82:6279
+      - 192.168.155.235:6280
+      - 192.168.155.235:6279
+      - 192.168.155.82:6280
+      - 192.168.155.81:6380
+  pool:
+    maxIdle: 3
+    idleTimeout: 240
+    maxConnLifetime: 300
+  connection:
+    readTimeout: 15
+    writeTimeout: 15
+    connectTimeout: 15
+aimodel:
+  deploy:
+    hosts:
+      -192.178.1.55.11
+      -192.178.1.55.12
+brLoanIntentUrl: http://192.168.144.27/nebula/esb/bairong/applyLoanStr

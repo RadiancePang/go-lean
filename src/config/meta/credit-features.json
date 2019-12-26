@@ -1,0 +1,1410 @@
+[
+  {
+    "id": "credit_card_num",
+    "name": "creditDetail.[loancard]",
+    "remark": "贷记卡总张数",
+    "type": "integer",
+    "formula": "map_size"
+  },
+  {
+    "id": "credit_max_cont_over_period_12m",
+    "remark": "近12月内最大的连续逾期期数_单张贷记卡",
+    "name": "creditDetail.[loancard].latest24MonthPaymentState.latest24State",
+    "type": "integer",
+    "condition": "max(12)",
+    "formula": "overdue_period_max"
+  },
+  {
+    "id": "credit_max_cont_over_period_24m",
+    "remark": "近24月内最大的连续逾期期数_单张贷记卡",
+    "name": "creditDetail.[loancard].latest24MonthPaymentState.latest24State",
+    "type": "integer",
+    "condition": "max(24)",
+    "formula": "overdue_period_max"
+  },
+  {
+    "id": "credit_accu_over_period_12m",
+    "name": "creditDetail.[loancard].latest24MonthPaymentState.latest24State",
+    "remark": "近12月内累计逾期期数_全部贷记卡",
+    "condition": "total(12)",
+    "type": "integer",
+    "formula": "overdue_period_total"
+  },
+  {
+    "id": "credit_accu_over_period_24m",
+    "name": "creditDetail.[loancard].latest24MonthPaymentState.latest24State",
+    "remark": "近24月内累计逾期期数_全部贷记卡",
+    "condition": "total(24)",
+    "type": "integer",
+    "formula": "overdue_period_total"
+  },
+  {
+    "id": "credit_accu_over_period_12m_max",
+    "name": "creditDetail.[loancard].latest24MonthPaymentState.latest24State",
+    "remark": "近12月内最大的累计逾期期数_单张贷记卡",
+    "condition": "max(12)",
+    "type": "integer",
+    "formula": "overdue_period_total"
+  },
+  {
+    "id": "credit_accu_over_period_24m_max",
+    "remark": "近24月内最大的累计逾期期数_单张贷记卡",
+    "name": "creditDetail.[loancard].latest24MonthPaymentState.latest24State",
+    "condition": "max(24)",
+    "type": "integer",
+    "formula": "overdue_period_total"
+  },
+  {
+    "id": "reportCreateTime",
+    "remark": "报告创建时间",
+    "name": "header.messageHeader.reportCreateTime",
+    "formate": "yyyy.MM.ddHH:mm:ss",
+    "hidden": true,
+    "type": "Date",
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "firstLoancardOpenMonth",
+    "remark": "贷记卡最早发卡月份",
+    "name": "infoSummary.creditCue.creditSummaryCue.firstLoancardOpenMonth",
+    "formate": "yyyy.MM",
+    "hidden": true,
+    "type": "Date",
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "lastLoancardOpenMonth",
+    "remark": "贷记卡最晚发卡月份",
+    "name": "creditDetail.[loancard]",
+    "formate": "yyyy.MM.dd",
+    "hidden": true,
+    "type": "Date",
+    "filterField": "awardCreditInfo.openDate",
+    "formula": "limit_last"
+  },
+  {
+    "id": "earliestLoancardOpenMonth",
+    "remark": "贷记卡最早发卡月份",
+    "name": "creditDetail.[loancard]",
+    "formate": "yyyy.MM.dd",
+    "hidden": true,
+    "type": "Date",
+    "filterField": "awardCreditInfo.openDate",
+    "formula": "limit_early"
+  },
+  {
+    "id": "daysToNow_max",
+    "remark": "最早发卡日期距报告日期的天数",
+    "name": "reportCreateTime,earliestLoancardOpenMonth",
+    "type": "integer",
+    "formate": "yyyy.MM",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "daysToNow_min",
+    "remark": "最晚发卡日期距报告日期的天数",
+    "name": "reportCreateTime,lastLoancardOpenMonth",
+    "type": "integer",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "limit_max",
+    "remark": "授信额度_所用贷记卡中最大的",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "type": "bigdecimal",
+    "formula": "limit_max"
+  },
+  {
+    "id": "m6avgbalance_max",
+    "remark": "最近6个月平均使用额度_所有贷记卡中最大的",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "repayInfo.latest6MonthUsedAvgAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_max"
+  },
+  {
+    "id": "maxbalance_max",
+    "remark": "最大使用额度_所有贷记卡中最大的",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "repayInfo.usedHighestAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_max"
+  },
+  {
+    "id": "curdefaultnum_max",
+    "remark": "当前逾期期数_所有贷记卡中最大的",
+    "name": "creditDetail.[loancard]",
+    "type": "integer",
+    "filterField": "currOverdue.currOverdueCyc",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_max"
+  },
+  {
+    "id": "curdefaultamt_max",
+    "remark": "当前逾期金额_所有贷记卡中最大的",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "currOverdue.currOverdueAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_max"
+  },
+  {
+    "id": "limit_sum",
+    "remark": "总的授信额度_所有贷记卡",
+    "name": "creditDetail.[loancard]",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "type": "bigdecimal",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total"
+  },
+  {
+    "id": "usedbalance_sum",
+    "remark": "总的已用额度_所有贷记卡",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "repayInfo.usedCreditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total"
+  },
+  {
+    "id": "m6avgbalance_sum",
+    "remark": "总的最近6个月平均使用额度_所有贷记卡",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "repayInfo.latest6MonthUsedAvgAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total"
+  },
+  {
+    "id": "normal_count",
+    "remark": "状态为正常的人民币账户个数",
+    "name": "creditDetail.[loancard]",
+    "type": "integer",
+    "filterField": "awardCreditInfo.currency",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_count"
+  },
+  {
+    "id": "loan_num",
+    "name": "creditDetail.[loan]",
+    "remark": "总的贷款笔数",
+    "type": "integer",
+    "formula": "map_size"
+  },
+  {
+    "id": "loan_amt_sum",
+    "remark": "所用贷款发放金额的总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "contractInfo.creditLimitAmount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_amt_notclear_sum",
+    "remark": "所用未结清贷款发放金额的总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "contractInfo.creditLimitAmount",
+    "condition": "state!=结清",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_amt_notclear_max",
+    "remark": "所用未结清贷款的最大发放金额",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "contractInfo.creditLimitAmount",
+    "condition": "state!=结清;contractInfo.currency=人民币",
+    "formula": "limit_max"
+  },
+  {
+    "id": "loan_cur_overdue_amt_sum",
+    "remark": "当前逾期金额总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currOverdue.currOverdueAmount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_balance_sum",
+    "remark": "本金余额总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currAccountInfo.balance",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_cur_shall_pay_sum",
+    "remark": "本月应还款额总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currAccountInfo.scheduledPaymentAmount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_cur_actual_pay_sum",
+    "remark": "本月实还款额总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currAccountInfo.actualPaymentAmount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_overdue31to60_sum",
+    "remark": "逾期30天-60天未还本金总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currOverdue.overdue31To60Amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_overdue61to90_sum",
+    "remark": "逾期60天-90天未还本金总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currOverdue.overdue61To90Amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_overdue91to180_sum",
+    "remark": "逾期90天-180天未还本金总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currOverdue.overdue91To180Amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_overdueabove180_sum",
+    "remark": "逾期180天以上未还本金总和",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "filterField": "currOverdue.overdueOver180Amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loan_account_clear_sum",
+    "remark": "结清贷款笔数",
+    "name": "creditDetail.[loan]",
+    "type": "integer",
+    "filterField": "state",
+    "condition": "state=结清",
+    "formula": "limit_count"
+  },
+  {
+    "id": "loan_account_bad_sum",
+    "remark": "逾期或呆账贷款笔数",
+    "name": "creditDetail.[loan]",
+    "type": "integer",
+    "filterField": "state",
+    "condition": "state=in(呆账,逾期)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "loan_accu_over_period_24m",
+    "remark": "近24月内贷款累计逾期期数",
+    "name": "creditDetail.[loan].latest24MonthPaymentState.latest24State",
+    "type": "integer",
+    "condition": "total(24)",
+    "formula": "overdue_period_total"
+  },
+  {
+    "id": "loan_accu_over_period_12m",
+    "remark": "近12月内贷款累计逾期期数",
+    "name": "creditDetail.[loan].latest24MonthPaymentState.latest24State",
+    "type": "integer",
+    "condition": "total(12)",
+    "formula": "overdue_period_total"
+  },
+  {
+    "id": "loan_max_cont_over_period_24m",
+    "remark": "近24月内最大的连续逾期期数",
+    "name": "creditDetail.[loan].latest24MonthPaymentState.latest24State",
+    "type": "integer",
+    "condition": "max(24)",
+    "formula": "overdue_period_max"
+  },
+  {
+    "id": "loan_max_cont_over_period_12m",
+    "remark": "近12月内最大的连续逾期期数",
+    "name": "creditDetail.[loan].latest24MonthPaymentState.latest24State",
+    "type": "integer",
+    "condition": "max(12)",
+    "formula": "overdue_period_max"
+  },
+  {
+    "id": "loan_overdue_one_above_3",
+    "remark": "还款记录里出现了一个3及以上",
+    "name": "creditDetail.[loan]",
+    "type": "integer",
+    "condition": "state=正常",
+    "filterField": "latest24MonthPaymentState.latest24State",
+    "formula": "over_due_above3"
+  },
+  {
+    "id": "firstLoanOpenMonth",
+    "remark": "最早贷款发放日期",
+    "name": "creditDetail.[loan]",
+    "formate": "yyyy.MM.dd",
+    "type": "String",
+    "hidden": true,
+    "filterField": "contractInfo.openDate",
+    "formula": "limit_early"
+  },
+  {
+    "id": "lastLoanOpenMonth",
+    "remark": "最晚贷款发放日期",
+    "name": "creditDetail.[loan]",
+    "formate": "yyyy.MM.dd",
+    "type": "String",
+    "hidden": true,
+    "filterField": "contractInfo.openDate",
+    "formula": "limit_last"
+  },
+  {
+    "id": "loan_daysToNow_max",
+    "remark": "最早贷款发放日期距报告日期的天数",
+    "name": "reportCreateTime,firstLoanOpenMonth",
+    "type": "integer",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "loan_daysToNow_min",
+    "remark": "最晚贷款发放日期距报告日期的天数",
+    "name": "reportCreateTime,lastLoanOpenMonth",
+    "type": "integer",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "perHouseLoanCount",
+    "remark": "个人住房贷款笔数",
+    "name": "infoSummary.creditCue.creditSummaryCue.perHouseLoanCount",
+    "type": "integer",
+    "hidden": true,
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "perBusinessHouseLoanCount",
+    "remark": "个人住房贷款笔数(商住两用)",
+    "name": "infoSummary.creditCue.creditSummaryCue.perBusinessHouseLoanCount",
+    "hidden": true,
+    "type": "integer",
+    "formula": "cal_iter_default"
+  },
+  {
+    "id": "loan_house_num",
+    "remark": "住房贷款笔数",
+    "name": "perHouseLoanCount,perBusinessHouseLoanCount",
+    "type": "integer",
+    "formula": "multi_add_num"
+  },
+  {
+    "id": "loan_auto_num",
+    "remark": "汽车贷款笔数",
+    "name": "creditDetail.[loan]",
+    "type": "integer",
+    "filterField": "contractInfo.type",
+    "condition": "contractInfo.type=个人汽车贷款",
+    "formula": "limit_count"
+  },
+  {
+    "id": "loan_house_repay_6months",
+    "remark": "至少有6次还款记录的房贷贷款笔数",
+    "name": "creditDetail.[loan]",
+    "type": "integer",
+    "filterField": "contractInfo.creditLimitAmount",
+    "condition": "contractInfo.type=in(个人住房贷款,个人住房公积金贷款,个人商用房(包括商住两用)贷款)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "query_loan_num",
+    "remark": "贷款审批查询次数",
+    "name": "queryRecord.[recordInfo].recordDetail",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason=贷款审批",
+    "formula": "limit_count"
+  },
+  {
+    "id": "query_credit_num",
+    "remark": "信用卡审批查询次数",
+    "name": "queryRecord.[recordInfo].recordDetail",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason=信用卡审批",
+    "formula": "limit_count"
+  },
+  {
+    "id": "query_num_in_12m",
+    "remark": "近12月内总的查询次数(去除贷后管理)",
+    "name": "reportCreateTime,queryRecord.[recordInfo].[recordDetail]",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason!=贷后管理;queryDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "query_loan_num_in_12m",
+    "remark": "近12月内贷款审批查询次数",
+    "name": "reportCreateTime,queryRecord.[recordInfo].recordDetail",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason=贷款审批;queryDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "query_credit_num_in_12m",
+    "remark": "近12月内信用卡审批查询次数",
+    "name": "reportCreateTime,queryRecord.[recordInfo].recordDetail",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason=信用卡审批;queryDate=diff_months(yyyy.MM.dd,12)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "query_times_total",
+    "remark": "所有查询次数总和",
+    "name": "queryRecord.[recordInfo].recordDetail",
+    "type": "integer",
+    "formula": "map_size"
+  },
+  {
+    "id": "cardtotal_overdue_months_outside_all",
+    "remark": "逾期持续月数累积",
+    "name": "creditDetail.[loancard].latest5YearOverdueRecord.overdueRecord",
+    "type": "integer",
+    "hidden": true,
+    "filterField": "lastMonths",
+    "formula": "limit_total"
+  },
+  {
+    "id": "loantotal_overdue_months_outside_all",
+    "remark": "逾期持续月数累积",
+    "name": "creditDetail.[loan].latest5YearOverdueRecord.overdueRecord",
+    "type": "integer",
+    "hidden": true,
+    "filterField": "lastMonths",
+    "formula": "limit_total"
+  },
+  {
+    "id": "standardtotal_overdue_months_outside_all",
+    "remark": "逾期持续月数累积",
+    "name": "creditDetail.[standardLoancard].latest5YearOverdueRecord.overdueRecord",
+    "type": "integer",
+    "hidden": true,
+    "filterField": "lastMonths",
+    "formula": "limit_total"
+  },
+  {
+    "id": "total_overdue_months_outside_2years",
+    "remark": "总的连续逾期月数/透支月数",
+    "name": "cardtotal_overdue_months_outside_all,loantotal_overdue_months_outside_all,standardtotal_overdue_months_outside_all",
+    "type": "integer",
+    "formula": "multi_add_num"
+  },
+  {
+    "id": "cardmax_overdue_months_outside_all",
+    "remark": "逾期持续月数最大",
+    "name": "creditDetail.[loancard].latest5YearOverdueRecord.overdueRecord",
+    "type": "integer",
+    "hidden": true,
+    "filterField": "lastMonths",
+    "formula": "limit_max"
+  },
+  {
+    "id": "loanmax_overdue_months_outside_all",
+    "remark": "逾期持续月数最大",
+    "name": "creditDetail.[loan].latest5YearOverdueRecord.overdueRecord",
+    "type": "integer",
+    "hidden": true,
+    "filterField": "lastMonths",
+    "formula": "limit_max"
+  },
+  {
+    "id": "standardmax_overdue_months_outside_all",
+    "remark": "逾期持续月数最大",
+    "name": "creditDetail.[standardLoancard].latest5YearOverdueRecord.overdueRecord",
+    "type": "integer",
+    "hidden": true,
+    "filterField": "lastMonths",
+    "formula": "limit_max"
+  },
+  {
+    "id": "max_overdue_months_outside_2years",
+    "remark": "最大的连续逾期月数/透支月数",
+    "name": "loanmax_overdue_months_outside_all,cardmax_overdue_months_outside_all,standardmax_overdue_months_outside_all",
+    "type": "integer",
+    "formula": "multi_max_num"
+  },
+  {
+    "id": "total_overdue_amt_loan_2years",
+    "remark": "总贷款逾期金额",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "latest5YearOverdueRecord.[overdueRecord].amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "total_overdue_amt_loancard_2years",
+    "remark": "总贷记卡逾期金额",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "latest5YearOverdueRecord.[overdueRecord].amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "total_overdue_amt_standard_2years",
+    "remark": "总准贷记卡逾期金额",
+    "name": "creditDetail.[standardLoancard]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "latest5YearOverdueRecord.[overdueRecord].amount",
+    "formula": "limit_total"
+  },
+  {
+    "id": "total_overdue_amt_outside_2years",
+    "remark": "总的逾期金额/透支金额",
+    "name": "total_overdue_amt_loancard_2years,total_overdue_amt_loan_2years,total_overdue_amt_standard_2years",
+    "type": "bigdecimal",
+    "formula": "multi_add_num"
+  },
+  {
+    "id": "max_overdue_amt_loan_2years",
+    "remark": "最大贷款逾期金额",
+    "name": "creditDetail.[loan]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "latest5YearOverdueRecord.[overdueRecord].amount",
+    "formula": "limit_max"
+  },
+  {
+    "id": "max_overdue_amt_loancard_2years",
+    "remark": "最大贷记卡逾期金额",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "latest5YearOverdueRecord.[overdueRecord].amount",
+    "formula": "limit_max"
+  },
+  {
+    "id": "max_overdue_amt_standard_2years",
+    "remark": "最大贷记卡逾期金额",
+    "name": "creditDetail.[standardLoancard]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "latest5YearOverdueRecord.[overdueRecord].amount",
+    "formula": "limit_max"
+  },
+  {
+    "id": "max_overdue_amt_outside_2years",
+    "remark": "最大的逾期金额/透支金额",
+    "name": "max_overdue_amt_loan_2years,max_overdue_amt_loancard_2years,max_overdue_amt_standard_2years",
+    "type": "bigdecimal",
+    "formula": "multi_max_num"
+  },
+  {
+    "id": "max_overdue_defaultid_loan",
+    "remark": "贷款最大的逾期编号",
+    "name": "creditDetail.[loan].latest5YearOverdueRecord.[overdueRecord]",
+    "hidden": true,
+    "filterField": "amount",
+    "type": "integer",
+    "formula": "limit_count"
+  },
+  {
+    "id": "max_overdue_defaultid_loancard",
+    "remark": "贷记卡最大的逾期编号",
+    "name": "creditDetail.[loancard].latest5YearOverdueRecord.[overdueRecord]",
+    "hidden": true,
+    "filterField": "amount",
+    "type": "integer",
+    "formula": "limit_count"
+  },
+  {
+    "id": "max_overdue_defaultid_standard",
+    "remark": "准贷记卡最大的逾期编号",
+    "name": "creditDetail.[standardLoancard].latest5YearOverdueRecord.[overdueRecord]",
+    "hidden": true,
+    "filterField": "amount",
+    "type": "integer",
+    "formula": "limit_count"
+  },
+  {
+    "id": "max_overdue_defaultid_outside_2years",
+    "remark": "最大的逾期编号",
+    "name": "max_overdue_defaultid_loancard,max_overdue_defaultid_loan,max_overdue_defaultid_standard",
+    "type": "integer",
+    "formula": "multi_add_num"
+  },
+  {
+    "id": "payamountm_on_max",
+    "remark": "缴费状态为缴交的账户的月缴存额的最大值",
+    "name": "publicInfo.[accFund]",
+    "type": "bigdecimal",
+    "condition": "state=缴交",
+    "filterField": "pay",
+    "formula": "limit_max"
+  },
+  {
+    "id": "payamountm_off_max",
+    "remark": "缴费状态不是缴交(封存或销户)的账户的月缴存额的最大值",
+    "name": "publicInfo.[accFund]",
+    "type": "bigdecimal",
+    "condition": "state!=缴交",
+    "filterField": "pay",
+    "formula": "limit_max"
+  },
+  {
+    "id": "selfpayscale_on_max",
+    "remark": "缴费状态为缴交的账户的个人缴存比例的最大值",
+    "name": "publicInfo.[accFund]",
+    "type": "bigdecimal",
+    "condition": "state=缴交",
+    "filterField": "ownPercent",
+    "formula": "limit_max"
+  },
+  {
+    "id": "selfpayscale_off_max",
+    "remark": "缴费状态不是缴交(封存或销户)的账户的个人缴存比例的最大值",
+    "name": "publicInfo.[accFund]",
+    "type": "bigdecimal",
+    "condition": "state!=缴交",
+    "filterField": "ownPercent",
+    "formula": "limit_max"
+  },
+  {
+    "id": "unitpayscale_on_max",
+    "remark": "缴费状态为缴交的账户的单位缴存比例的最大值",
+    "name": "publicInfo.[accFund]",
+    "type": "bigdecimal",
+    "condition": "state=缴交",
+    "filterField": "comPercent",
+    "formula": "limit_max"
+  },
+  {
+    "id": "unitpayscale_off_max",
+    "remark": "缴费状态不是缴交(封存或销户)的账户的单位缴存比例的最大值",
+    "name": "publicInfo.[accFund]",
+    "type": "bigdecimal",
+    "condition": "state!=缴交",
+    "filterField": "comPercent",
+    "formula": "limit_max"
+  },
+  {
+    "id": "has_housing_fund_on",
+    "remark": "公积金缴存正常",
+    "name": "publicInfo.[accFund]",
+    "type": "String",
+    "filterField": "state",
+    "condition": "state=缴交",
+    "formula": "filter_feild_flag"
+  },
+  {
+    "id": "has_housing_fund_record",
+    "remark": "有公积金缴存记录",
+    "name": "publicInfo.[accFund]",
+    "type": "String",
+    "filterField": "state",
+    "formula": "filter_feild_flag"
+  },
+  {
+    "id": "payid_max",
+    "remark": "最大的公积金账户编号",
+    "name": "publicInfo.[accFund]",
+    "type": "integer",
+    "formula": "map_size"
+  },
+  {
+    "id": "insurance_payamountm_on_max",
+    "remark": "缴费状态为参保缴费的本月缴费金额的最大值",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "bigdecimal",
+    "condition": "state=参保缴费",
+    "filterField": "money",
+    "formula": "limit_max"
+  },
+  {
+    "id": "insurance_payamountm_off_max",
+    "remark": "缴费状态为非参保缴费的本月缴费金额的最大值",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "bigdecimal",
+    "condition": "state!=参保缴费",
+    "filterField": "money",
+    "formula": "limit_max"
+  },
+  {
+    "id": "insurance_selfamountm_on_max",
+    "remark": "缴费状态为参保缴费的个人缴费基数的最大值",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "bigdecimal",
+    "condition": "state=参保缴费",
+    "filterField": "ownBasicMoney",
+    "formula": "limit_max"
+  },
+  {
+    "id": "insurance_selfamountm_off_max",
+    "remark": "缴费状态为非参保缴费的个人缴费基数的最大值",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "bigdecimal",
+    "condition": "state!=参保缴费",
+    "filterField": "ownBasicMoney",
+    "formula": "limit_max"
+  },
+  {
+    "id": "earlyWorkDate",
+    "remark": "最早参加工作月份",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "formate": "yyyy.MM",
+    "type": "String",
+    "hidden": true,
+    "filterField": "workDate",
+    "formula": "limit_early"
+  },
+  {
+    "id": "work_months_to_report_max",
+    "remark": "最早参加工作月份距报告月份数",
+    "name": "reportCreateTime,earlyWorkDate",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "lastEndowmentUpdateTime",
+    "remark": "最晚变更日期",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "formate": "yyyy.MM.dd",
+    "hidden": true,
+    "type": "String",
+    "filterField": "getTime",
+    "formula": "limit_last"
+  },
+  {
+    "id": "update_months_to_report_min",
+    "remark": "最晚变更日期距报告月份数",
+    "name": "reportCreateTime,lastEndowmentUpdateTime",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "has_insurance_payment_on",
+    "remark": "有养老保险参缴记录并且缴费状态为参保缴费",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "String",
+    "filterField": "state",
+    "condition": "state=参保缴费",
+    "formula": "filter_feild_flag"
+  },
+  {
+    "id": "has_insurance_payment_record",
+    "remark": "是否养老保险参缴记录",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "String",
+    "filterField": "state",
+    "formula": "filter_feild_flag"
+  },
+  {
+    "id": "insurance_payid_max",
+    "remark": "最大的养老保险账户编号",
+    "name": "publicInfo.[endowmentInsuranceDeposit]",
+    "type": "integer",
+    "formula": "map_size"
+  },
+  {
+    "id": "gualoan_num",
+    "remark": "总的担保贷款笔数",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "integer",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.contractMoney",
+    "formula": "limit_count"
+  },
+  {
+    "id": "gualoanbal_sum",
+    "remark": "所有担保贷款本金余额总和",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "bigdecimal",
+    "filterField": "guarantee.guaranteeBalance",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "formula": "limit_total"
+  },
+  {
+    "id": "gualoanbal_max",
+    "remark": "担保贷款本金余额",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "bigdecimal",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.guaranteeBalance",
+    "formula": "limit_max"
+  },
+  {
+    "id": "guaamount_sum",
+    "remark": "所有担保金额总和",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "bigdecimal",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.guananteeMoney",
+    "formula": "limit_total"
+  },
+  {
+    "id": "guaamount_max",
+    "remark": "担保贷款担保金额",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "bigdecimal",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.guananteeMoney",
+    "formula": "limit_max"
+  },
+  {
+    "id": "guacontractamount_sum",
+    "remark": "担保贷款合同金额总和",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "bigdecimal",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.contractMoney",
+    "formula": "limit_total"
+  },
+  {
+    "id": "guacontractamount_max",
+    "remark": "最大的担保贷款合同金额",
+    "name": "creditDetail.[guaranteeInfo]",
+    "type": "bigdecimal",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.contractMoney",
+    "formula": "limit_max"
+  },
+  {
+    "id": "gualoan_account_normal_sum",
+    "remark": "担保贷款五级分类为正常或关注的账户数",
+    "name": "creditDetail.[guaranteeInfo].[guarantee]",
+    "type": "integer",
+    "filterField": "class5State",
+    "condition": "class5State=in(正常,关注)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "gualoan_account_bad_sum",
+    "remark": "担保贷款五级分类为损失或可疑或次级的账户数",
+    "name": "creditDetail.[guaranteeInfo].[guarantee]",
+    "type": "integer",
+    "filterField": "class5State",
+    "condition": "class5State=in(损失,可疑,次级)",
+    "formula": "limit_count"
+  },
+  {
+    "id": "gualoanBeginDate",
+    "remark": "最早担保贷款发放日期",
+    "name": "creditDetail.[guaranteeInfo]",
+    "formate": "yyyy.MM.dd",
+    "type": "String",
+    "hidden": true,
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.beginDate",
+    "formula": "limit_early"
+  },
+  {
+    "id": "gualoanLastDate",
+    "remark": "最晚担保贷款发放日期",
+    "name": "creditDetail.[guaranteeInfo]",
+    "hidden": true,
+    "formate": "yyyy.MM.dd",
+    "type": "String",
+    "condition": "guaranteeFormat=对外贷款担保",
+    "filterField": "guarantee.beginDate",
+    "formula": "limit_last"
+  },
+  {
+    "id": "gualoan_daysToNow_max",
+    "remark": "最早担保贷款发放日期距报告日期间的天数",
+    "name": "reportCreateTime,gualoanBeginDate",
+    "type": "integer",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "gualoan_daysToNow_min",
+    "remark": "最晚担保贷款发放日期距报告日期间的天数",
+    "name": "reportCreateTime,gualoanLastDate",
+    "type": "integer",
+    "formula": "cal_days_diff"
+  },
+  {
+    "id": "loandefaultnum",
+    "remark": "贷款逾期笔数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loanSum.count",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "loandefaultmon",
+    "remark": "贷款逾期月份数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loanSum.months",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "loansmmaxdefaultamt",
+    "remark": "贷款单月最高逾期总额",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loanSum.highestOverdueAmountPerMon",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "loanlongdefaultmon",
+    "remark": "贷款最长逾期月数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loanSum.maxDuration",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "card1defaultnum",
+    "remark": "贷记卡逾期账户数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loancardSum.count",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "card1defaultmon",
+    "remark": "贷记卡逾期月份数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loancardSum.months",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "card1smmaxdefaultamt",
+    "remark": "贷记卡单月最高逾期总额",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loancardSum.highestOverdueAmountPerMon",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "card1longdefaultmon",
+    "remark": "贷记卡最长逾期月份数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.loancardSum.maxDuration",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "card2m2outnum",
+    "remark": "准贷记卡60天以上透支账户数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.standardLoancardSum.count",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "card2m2outmon",
+    "remark": "准贷记卡60天以上透支月份数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.standardLoancardSum.months",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "card2m2outmaxmonamt",
+    "remark": "准贷记卡60天以上透支单月最高透支额度",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.standardLoancardSum.highestOverdueAmountPerMon",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "card2m2outlongmon",
+    "remark": "准贷记卡60天以上透支最长透支月数",
+    "name": "infoSummary.overdueAndFellback.overdueSummary.standardLoancardSum.maxDuration",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_gualoannum",
+    "remark": "担保笔数",
+    "name": "infoSummary.shareAndDebt.guaranteeSummary.count",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_gualoanamount",
+    "remark": "担保金额",
+    "name": "infoSummary.shareAndDebt.guaranteeSummary.amount",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_gualoanprincipalamount",
+    "remark": "担保本金余额",
+    "name": "infoSummary.shareAndDebt.guaranteeSummary.balance",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_card1corporationornum",
+    "remark": "发卡法人机构数",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.financeCorpCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_card1ornum",
+    "remark": "发卡机构数",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.financeOrgCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_num",
+    "remark": "账户数",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.accountCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_num",
+    "remark": "账户数",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.accountCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_creditamount",
+    "remark": "授信总额",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.creditLimit",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_singlebankmaxcredit",
+    "remark": "单家行最高授信额度",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.maxCreditLimitPerOrg",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_singlebankmincredit",
+    "remark": "单家行最低授信额度",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.minCreditLimitPerOrg",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_usedbalance",
+    "remark": "已用额度",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.usedCreditLimit",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_card1m6avgbalance",
+    "remark": "最近六个月平均使用额度",
+    "name": "infoSummary.shareAndDebt.undestoryLoancard.latest6MonthUsedAvgAmount",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_loancorporationornum",
+    "remark": "贷款法人机构数",
+    "name": "infoSummary.shareAndDebt.unpaidLoan.financeCorpCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_loanornum",
+    "remark": "贷款机构数",
+    "name": "infoSummary.shareAndDebt.unpaidLoan.financeOrgCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_loan_num",
+    "remark": "未结清贷款笔数",
+    "name": "infoSummary.shareAndDebt.unpaidLoan.accountCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_contractamount",
+    "remark": "合同总额",
+    "name": "infoSummary.shareAndDebt.unpaidLoan.creditLimit",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_balance",
+    "remark": "未结清贷款余额",
+    "name": "infoSummary.shareAndDebt.unpaidLoan.balance",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_m6avgneedpay",
+    "remark": "最近6个月平均应还款",
+    "name": "infoSummary.shareAndDebt.unpaidLoan.latest6MonthUsedAvgAmount",
+    "type": "bigdecimal",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_personalhlnum",
+    "remark": "个人住房贷款笔数",
+    "name": "infoSummary.creditCue.creditSummaryCue.perHouseLoanCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_personalchlnum",
+    "remark": "个人商用房(包括商住两用)贷款笔数",
+    "name": "infoSummary.creditCue.creditSummaryCue.perBusinessHouseLoanCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_otherloannum",
+    "remark": "其他贷款笔数",
+    "name": "infoSummary.creditCue.creditSummaryCue.otherLoanCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_firstLoanOpenMonth",
+    "remark": "首笔贷款发放月份",
+    "name": "infoSummary.creditCue.creditSummaryCue.firstLoanOpenMonth",
+    "hidden": true,
+    "formate": "yyyy.MM",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_firstloanmonth_monToNow",
+    "remark": "首笔贷款发放月份距报告日期月份数",
+    "name": "reportCreateTime,summ_firstLoanOpenMonth",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "summ_tips_card1num",
+    "remark": "贷记卡账户数",
+    "name": "infoSummary.creditCue.creditSummaryCue.loancardCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_firstcard1month_monToNow",
+    "remark": "首笔贷记卡发卡月份距报告日期月份数",
+    "name": "reportCreateTime,firstLoancardOpenMonth",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "summ_tips_card2num",
+    "remark": "准贷记卡账户数",
+    "name": "infoSummary.creditCue.creditSummaryCue.standardLoancardCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "firstStandardLoancardOpenMonth",
+    "remark": "首笔准贷记卡发卡月份",
+    "name": "infoSummary.creditCue.creditSummaryCue.firstStandardLoancardOpenMonth",
+    "formate": "yyyy.MM",
+    "hidden": true,
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_firstcard2month_monToNow",
+    "remark": "首笔准贷记卡发卡月份距报告日期月份数",
+    "name": "reportCreateTime,firstStandardLoancardOpenMonth",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "summ_tips_statementnum",
+    "remark": "本人声明数目",
+    "name": "infoSummary.creditCue.creditSummaryCue.announceCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "summ_tips_dissentmarknum",
+    "remark": "异议标注数目",
+    "name": "infoSummary.creditCue.creditSummaryCue.dissentCount",
+    "type": "integer",
+    "formula": ""
+  },
+  {
+    "id": "enforcement_case_num",
+    "remark": "被强制执行案件记录数",
+    "name": "publicInfo.[forceExecution]",
+    "type": "integer",
+    "formula": "map_size"
+  },
+  {
+    "id": "enforcement_case_unclosed_num",
+    "remark": "未结案的被强制执行案件记录数",
+    "name": "publicInfo.[forceExecution]",
+    "type": "integer",
+    "fetchField": "closedDate",
+    "formate": "yyyy.MM.dd",
+    "formula": "case_close_num"
+  },
+  {
+    "id": "applyobjectvalue_sum",
+    "remark": "申请执行标的价值总和",
+    "name": "publicInfo.[forceExecution]",
+    "type": "bigdecimal",
+    "filterField": "enforceObjectMoney",
+    "formula": "limit_total"
+  },
+  {
+    "id": "executedtargetm_sum",
+    "remark": "已执行标的金额总和",
+    "name": "publicInfo.[forceExecution]",
+    "type": "bigdecimal",
+    "filterField": "alreadyEnforceObjectMoney",
+    "formula": "limit_total"
+  },
+  {
+    "id": "last_1month_sel_oneself_sel_cnt",
+    "name": "queryRecord.recordSummary.[latestMonthQueryrecordSum]",
+    "remark": "最近1个月内本人查询",
+    "type": "integer",
+    "condition": "QUERY_RECORD_PERSON",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "last_1month_sel_org_loan_aprv_cnt",
+    "name": "queryRecord.recordSummary.[latestMonthQueryorgSum]",
+    "remark": "最近1个月内查询机构贷款审批",
+    "type": "integer",
+    "condition": "QUERY_LOAN_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "last_1month_sel_loan_aprv_cnt",
+    "remark": "最近1个月内贷款审批",
+    "name": "queryRecord.recordSummary.[latestMonthQueryrecordSum]",
+    "type": "integer",
+    "condition": "QUERY_LOAN_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "last_1month_sel_credit_card_aprv_cnt",
+    "remark": "最近1个月内信用卡审批",
+    "name": "queryRecord.recordSummary.[latestMonthQueryrecordSum]",
+    "type": "integer",
+    "condition": "QUERY_CARD_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "last_2year_sel_pln_admin_cnt",
+    "remark": "最近2年内贷后管理",
+    "name": "queryRecord.recordSummary.[twoyearQueryrecordSum]",
+    "type": "integer",
+    "condition": "QUERY_LOAN_AFTER",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "last_1month_sel_org_credit_card_aprv_cnt",
+    "remark": "最近1个月内查询机构信用卡审批",
+    "name": "queryRecord.recordSummary.[latestMonthQueryorgSum]",
+    "type": "integer",
+    "condition": "QUERY_CARD_APPROVE",
+    "formula": "fetch_one"
+  },
+  {
+    "id": "earlyLoancardOpenMonth",
+    "remark": "贷记卡最早发卡月份",
+    "name": "creditDetail.[loancard]",
+    "formate": "yyyy.MM.dd",
+    "hidden": true,
+    "condition": "正常",
+    "filterField": "awardCreditInfo.openDate",
+    "formula": "limit_early"
+  },
+  {
+    "id": "monthsToNow_max",
+    "remark": "最早发卡日期距报告日期的月数",
+    "name": "reportCreateTime,earlyLoancardOpenMonth",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "monthsToNow_min",
+    "remark": "最晚发卡日期距报告日期的月数",
+    "name": "reportCreateTime,lastLoancardOpenMonth",
+    "type": "integer",
+    "formula": "cal_diff_months"
+  },
+  {
+    "id": "normal_card_useramt",
+    "remark": "贷记卡人民币已用额度",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "hidden": true,
+    "filterField": "repayInfo.usedCreditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total"
+  },
+  {
+    "id": "normal_card_tot_amt_rmb_tt",
+    "remark": "正常人民币信用卡（总）额度_全量",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_total",
+    "defaultCondition": "state=正常",
+    "hidden": true
+  },
+  {
+    "id": "perc_usedbalance_sum",
+    "remark": "正常人民币账户额度总使用率",
+    "name": "normal_card_useramt,normal_card_tot_amt_rmb_tt",
+    "type": "bigdecimal",
+    "formula": "two_num_percent"
+  },
+  {
+    "id": "perc_maxbalance_max",
+    "remark": "人民币最大信用卡额度使用率",
+    "name": "reportCreateTime,creditDetail.[loancard]",
+    "compute": "repayInfo.usedCreditLimitAmount/awardCreditInfo.creditLimitAmount",
+    "type": "bigdecimal",
+    "condition": "state=;state!=未激活;state!=呆账;awardCreditInfo.currency=人民币账户",
+    "formula": "math_percent_max",
+    "defaultCondition": "state!=销户;state!=未激活;state!=呆账;awardCreditInfo.currency=人民币账户"
+  },
+  {
+    "id": "query_credit_num_in_1m",
+    "remark": "信用卡审批查询次数_1月内",
+    "name": "reportCreateTime,queryRecord.[recordInfo].[recordDetail]",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason=信用卡审批;queryDate=diff_months(yyyy.MM.dd,1)",
+    "formula": "limit_count",
+    "defaultCondition": "queryDate=diff_months(yyyy.MM.dd,1)"
+  },
+  {
+    "id": "query_loan_num_in_1m",
+    "remark": "贷款审批查询次数_1月内",
+    "name": "reportCreateTime,queryRecord.[recordInfo].recordDetail",
+    "type": "integer",
+    "filterField": "queryReason",
+    "condition": "queryReason!=贷后管理;queryDate=diff_months(yyyy.MM.dd,6)",
+    "formula": "limit_count",
+    "defaultCondition": "queryDate=diff_months(yyyy.MM.dd,1)"
+  },
+  {
+    "id": "perc_normal_count",
+    "remark": "正常人民币账户占比",
+    "name": "normal_count,credit_card_num",
+    "type": "bigdecimal",
+    "formula": "two_num_percent"
+  },
+  {
+    "id": "limit_min",
+    "remark": "授信额度_所用贷记卡中最小的",
+    "name": "creditDetail.[loancard]",
+    "type": "bigdecimal",
+    "filterField": "awardCreditInfo.creditLimitAmount",
+    "condition": "state=正常;awardCreditInfo.currency=人民币账户",
+    "formula": "limit_min"
+  }
+]

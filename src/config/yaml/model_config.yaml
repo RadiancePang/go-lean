@@ -1,0 +1,27 @@
+models:
+    - name: LIGHTGBM
+      version: 1.1.2
+      dsn: default
+      serviceName: AiModelCredit
+      features:
+          -
+            dataSetId: credit-featues
+            filePath: inference/engine/config/meta/credit-features.json
+          - dataSetId: model-featues
+            filePath: inference/engine/config/meta/model-features.json
+    - name: LIGHTGBM_0
+      version: 1.1.0
+      dsn: default
+      modelId : "aimodel_zero"
+      serviceName: AiModelZero
+      features:
+        - dataSetId: model-featues
+          filePath: inference/engine/config/meta/model-features.json
+    - name: yxscore
+      modelId: yxscore
+      serviceName: AiModelYxscore
+      dsn: default
+      features:
+          -
+            dataSetId: yxscore-features
+            filePath: inference/engine/config/meta/yxscore-features.json

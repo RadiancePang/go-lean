@@ -1,0 +1,740 @@
+[
+  {
+    "id": "cert_num",
+    "name": "applyPersonInfoAzjhm",
+    "remark": "证件号码",
+    "hidden": true,
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "mobile_phone",
+    "remark": "手机号码",
+    "name": "applyPersonInfoAsjhm",
+    "type": "String",
+    "hidden": true,
+    "formula": ""
+  },
+  {
+    "id": "cust_name",
+    "remark": "客户名称",
+    "name": "applyPersonInfoAkhxm",
+    "hidden": true,
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "apply_no",
+    "name": "orderId",
+    "remark": "订单编号",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "cert_type",
+    "name": "applyPersonInfoApozjlx",
+    "remark": "证件类型",
+    "hidden": true,
+    "type": "Strng",
+    "formula": ""
+  },
+  {
+    "id": "apply_time",
+    "name": "applyMainInfoDzxtjrq",
+    "remark": "申请时间",
+    "type": "String",
+    "hidden": true,
+    "formula": ""
+  },
+  {
+    "id": "apply_month",
+    "name": "apply_time",
+    "remark": "申请月份",
+    "type": "String",
+    "formula": "apply_month"
+  },
+  {
+    "id": "car_type",
+    "name": "applyCarInfoAcllx",
+    "remark": "车辆类型",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "busi_type",
+    "name": "applyMainInfoAywlx",
+    "remark": "业务类型",
+    "type": "String",
+    "hidden": true,
+    "formula": ""
+  },
+  {
+    "id": "cmsn_chg",
+    "remark": "手续费",
+    "name": "applyCostInfoFsxf",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "cmsn_chg_rate",
+    "remark": "手续费比例",
+    "name": "applyCostInfoFsxfl",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "company_work_years",
+    "remark": "现单位在职年限",
+    "name": "applyPersonInfoIzznx",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "custChannelTypeCode",
+    "remark": "客户渠道类型编码",
+    "name": "applyPersonInfoAkhqdlx",
+    "type": "String",
+    "hidden": true
+  },
+  {
+    "id": "cust_channel_code",
+    "remark": "客户渠道类型编码",
+    "name": "custChannelTypeCode",
+    "type": "String",
+    "condition": "custChannelCode()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "cust_phone",
+    "remark": "手机号码",
+    "name": "applyPersonInfoAsjhm",
+    "type": "String",
+    "formula": "cust_phone"
+  },
+  {
+    "id": "cust_rate",
+    "remark": "客户利率",
+    "name": "applyCostInfoFkhll",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "deposit_amt",
+    "remark": "保证金",
+    "name": "applyCostInfoFbzj",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "deposit_rate",
+    "remark": "保证金比例",
+    "name": "applyCostInfoFbzjl",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "down_payment_rate",
+    "remark": "首付比例",
+    "name": "applyCostInfoFsfbl",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "down_payment",
+    "remark": "首付金额",
+    "name": "applyCostInfoFsfje",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "is_drli",
+    "remark": "有无驾驶证",
+    "name": "",
+    "type": "String",
+    "formula": "",
+    "defaultValue": "1"
+  },
+  {
+    "id": "is_finance_insu",
+    "remark": "是否融保险",
+    "name": "applyMainInfoAsfrbx",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "is_houpro",
+    "remark": "有无房产",
+    "name": "applyPersonInfoAywfc",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "loan_amt",
+    "remark": "客户融资额",
+    "name": "applyCostInfoFrze",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "loan_period",
+    "remark": "融资期限",
+    "name": "applyMainInfoArzqx",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "make_id",
+    "remark": "子品牌id（厂商）",
+    "name": "applyCarInfoAcx",
+    "type": "String",
+    "condition": "DictCarInfo()",
+    "formula": "dict_model"
+  },
+  {
+    "id": "master_brand_id",
+    "remark": "主品牌id（品牌）",
+    "name": "applyCarInfoApp",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "month_pay",
+    "remark": "月供",
+    "name": "applyCostInfoFmqkhzj",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "refer_price",
+    "remark": "车辆指导价",
+    "name": "applyCarInfoFzdj",
+    "type": "String",
+    "condition": "10000",
+    "formula": "amount_convert"
+  },
+  {
+    "id": "residence_status",
+    "remark": "居住状况",
+    "name": "applyPersonInfoAjzzk",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "risk_ctrl_finance_amt",
+    "remark": "风控融资额",
+    "name": "applyCostInfoFfxrze2",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "risk_finance_amt",
+    "remark": "风险融资",
+    "name": "applyCostInfoFfxrze",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "sale_price",
+    "remark": "车辆实际销售价",
+    "name": "applyCarInfoFxsj",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "series_id",
+    "remark": "车系id",
+    "name": "applyCarInfoAcxi",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "series_level_id",
+    "remark": "车系级别id",
+    "name": "applyCarInfoAcx",
+    "type": "String",
+    "condition": "DictSereisLevelId()",
+    "formula": "dict_model"
+  },
+  {
+    "id": "settlement_rate",
+    "remark": "结算利率",
+    "name": "applyCostInfoFjsll",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "style_id",
+    "remark": "车型id",
+    "name": "applyCarInfoAcx",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "tail_payment",
+    "remark": "尾付金额",
+    "name": "applyCostInfoFwfje",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "tail_payment_rate",
+    "remark": "尾付比例",
+    "name": "applyCostInfoFwfbl",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "total_invest_amt",
+    "remark": "总投资额",
+    "name": "applyCostInfoFtzze",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "used_car_assess_price",
+    "remark": "二手车实际评估价",
+    "name": "applyCarInfoAppraisalPrice",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "age",
+    "remark": "年龄",
+    "name": "",
+    "type": "String",
+    "formula": "cust_age"
+  },
+  {
+    "id": "company_city_code",
+    "remark": "单位所在城市id",
+    "name": "applyPersonInfoAdwszcs",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "company_province_code",
+    "remark": "单位所在省份id",
+    "name": "applyPersonInfoAdwszsf",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "household_city_code",
+    "remark": "户籍所在市编码",
+    "name": "applyPersonInfoAhjszcs",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "household_province_code",
+    "remark": "户籍所在省编码",
+    "name": "applyPersonInfoAhjszsf",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "license_city_code",
+    "remark": "车牌所属城市编码",
+    "name": "applyCarInfoAyjspcs",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "license_province_code",
+    "remark": "车牌所属省份编码",
+    "name": "applyCarInfoAyjspsf",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "residence_city_code",
+    "remark": "现居住地所在市编码",
+    "name": "applyPersonInfoAxjzdcs",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "residence_province_code",
+    "remark": "现居住地所在省编码",
+    "name": "applyPersonInfoAxjzdsf",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "company_indu_code",
+    "remark": "单位所属行业编码",
+    "name": "applyPersonInfoAdwsshy",
+    "type": "String",
+    "condition": "DictOther(indu_unknow)",
+    "formula": "dict_model"
+  },
+  {
+    "id": "company_prop_code",
+    "remark": "单位企业性质编码",
+    "name": "applyPersonInfoAdwqyxz",
+    "type": "String",
+    "condition": "DictOther(prop_other)",
+    "formula": "dict_model",
+
+  },
+  {
+    "id": "education_code",
+    "remark": "学历编码",
+    "name": "applyPersonInfoAsqrxl",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "first_chnl_class_id",
+    "remark": "合作渠道一级科目id",
+    "name": "applyStoreInfoAid",
+    "type": "String",
+    "condition": "DictChanenlInfo1()",
+    "formula": "dict_model"
+  },
+  {
+    "id": "indiv_career_code",
+    "remark": "个人职业编码",
+    "name": "applyPersonInfoAsqrzy",
+    "type": "String",
+    "condition": "DictOther(career_unknow)",
+    "formula": "dict_model"
+  },
+  {
+    "id": "indiv_ocp_code",
+    "remark": "个人职务编码",
+    "name": "applyPersonInfoAsqrzw",
+    "type": "String",
+    "condition": "DictOther(ocp_unknow)",
+    "formula": "dict_model"
+  },
+  {
+    "id": "marriage_state_code",
+    "remark": "婚姻状况编码",
+    "name": "applyPersonInfoAhyzk",
+    "type": "String",
+    "condition": "DictModelEnum(DictMarriage)",
+    "formula": "dict_model"
+  },
+  {
+    "id": "second_chnl_class_id",
+    "remark": "合作渠道二级科目id",
+    "name": "applyStoreInfoAid",
+    "type": "String",
+    "condition": "DictChanenlInfo2()",
+    "formula": "dict_model"
+  },
+  {
+    "id": "sex_code",
+    "remark": "性别编码",
+    "name": "applyPersonInfoAkhxb",
+    "type": "String",
+    "condition": "DictModelEnum(DictSex)",
+    "formula": "dict_model"
+  },
+  {
+    "id": "store_type_code",
+    "remark": "店面属性",
+    "name": "applyStoreInfoAdmsxCode",
+    "type": "String",
+    "formula": ""
+  },
+  {
+    "id": "als_m6_cell_nbank_min_monnum",
+    "remark": "近6个月在非银机构最小月申请次数",
+    "name": "data.als_m6_cell_nbank_min_monnum",
+    "type": "String",
+    "condition": "cert_num;apply_no;mobile_phone;cust_name",
+    "formula": "br_loan_intent"
+  },
+  {
+    "id": "als_m12_id_nbank_week_orgnum",
+    "remark": "近12个月在非银机构周末申请机构数",
+    "name": "data.als_m12_id_nbank_week_orgnum",
+    "type": "String",
+    "condition": "cert_num;apply_no;mobile_phone;cust_name",
+    "formula": "br_loan_intent"
+  },
+  {
+    "id": "als_m6_id_nbank_week_allnum",
+    "remark": "近6个月在非银机构周末申请次数",
+    "name": "data.als_m6_id_nbank_week_allnum",
+    "type": "String",
+    "condition": "cert_num;apply_no;mobile_phone;cust_name",
+    "formula": "br_loan_intent"
+  },
+  {
+    "id": "als_m12_id_nbank_orgnum",
+    "remark": "近12个月在非银机构申请机构数",
+    "name": "data.als_m12_id_nbank_orgnum",
+    "type": "String",
+    "condition": "cert_num;apply_no;mobile_phone;cust_name",
+    "formula": "br_loan_intent"
+  },
+  {
+    "id": "mileage",
+    "remark": "二手车公里数",
+    "name": "applyCarInfoFescgls",
+    "type": "bigdecimal"
+  },
+  {
+    "id": "car_register_date",
+    "remark": "初登日期",
+    "name": "applyCarInfoDesccdrq",
+    "hidden": true,
+    "formate": "yyyy.MM.dd",
+    "type": "string"
+  },
+  {
+    "id": "submit_date",
+    "remark": "进件日期",
+    "name": "applyMainInfoDsctjrq",
+    "formate": "yyyy.MM.dd HH:mm:ss",
+    "hidden": true,
+    "type": "string"
+  },
+  {
+    "id": "vehicle_age",
+    "remark": "车龄（二手车）",
+    "name": "submit_date,car_register_date",
+    "type": "integer",
+    "formula": "cal_diff_years"
+  },
+  {
+    "id": "gps_add_price",
+    "remark": "gps加价",
+    "name": "applyCostInfoGPSjj",
+    "type": "String"
+  },
+  {
+    "id": "style_year",
+    "remark": "年款",
+    "name": "applyCarInfoNk",
+    "type": "String"
+  },
+  {
+    "id": "gps_total_price",
+    "remark": "gps总价",
+    "name": "applyCostInfoGPSzj",
+    "type": "String"
+  },
+  {
+    "id": "costinfo_theft_protect",
+    "remark": "盗抢险",
+    "name": "applyCostInfoTheftProtect",
+    "hidden": true,
+    "type": "String"
+  },
+  {
+    "id": "total_insu_amt_alix",
+    "remark": "总保费",
+    "name": "applyCostInfoZbf",
+    "type": "string",
+    "hidden": true
+  },
+  {
+    "id": "total_insu_amt",
+    "remark": "总保费",
+    "name": "total_insu_amt_alix,costinfo_theft_protect",
+    "type": "bigdecimal",
+    "formula": "multi_add_num"
+  },
+  {
+    "id": "acc_manage_amt",
+    "remark": "账户管理费",
+    "name": "applyCostInfoZhglf",
+    "type": "String"
+  },
+  {
+    "id": "age_level",
+    "remark": "衍生自age",
+    "name": "age",
+    "type": "integer",
+    "condition": "ageLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "cmsn_chg_level",
+    "remark": "衍生自cmsn_chg",
+    "name": "cmsn_chg",
+    "type": "integer",
+    "condition": "downPayment()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "cmsn_chg_rate_level",
+    "remark": "衍生自cmsn_chg_rate",
+    "name": "cmsn_chg_rate",
+    "type": "integer",
+    "condition": "paymentRate()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "company_province_level",
+    "remark": "衍生自company_province_code",
+    "name": "company_province_code",
+    "type": "integer",
+    "condition": "provinceLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "cust_rate_level",
+    "remark": "衍生自cust_rate",
+    "name": "cust_rate",
+    "type": "integer",
+    "condition": "custRate()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "deposit_amt_level",
+    "remark": "衍生自deposit_amt",
+    "name": "deposit_amt",
+    "type": "integer",
+    "condition": "downPayment()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "deposit_rate_level",
+    "remark": "衍生自deposit_rate",
+    "name": "deposit_rate",
+    "type": "integer",
+    "condition": "paymentRate()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "down_payment_level",
+    "remark": "衍生自down_payment",
+    "name": "down_payment",
+    "type": "integer",
+    "condition": "downPayment()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "down_payment_rate_level",
+    "remark": "衍生自down_payment_rate",
+    "name": "down_payment_rate",
+    "type": "integer",
+    "condition": "paymentRate()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "household_province_level",
+    "remark": "衍生自household_province_code",
+    "name": "household_province_code",
+    "type": "integer",
+    "condition": "provinceLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_beijing",
+    "remark": "衍生自company_province_code",
+    "name": "company_province_code",
+    "type": "integer",
+    "condition": "compareProvinceCode(company_province_code,2)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_diff_household_company",
+    "remark": "衍生自company_province_code,household_province_code",
+    "name": "",
+    "type": "integer",
+    "condition": "compareProvinceCode(company_province_code,household_province_code)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_diff_license_company",
+    "remark": "衍生自company_province_code,license_province_code",
+    "name": "",
+    "type": "integer",
+    "condition": "compareProvinceCode(company_province_code,license_province_code)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_diff_residence_company",
+    "remark": "衍生自company_province_code,residence_province_code",
+    "name": "",
+    "type": "integer",
+    "condition": "compareProvinceCode(company_province_code,residence_province_code)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_diff_residence_license",
+    "remark": "衍生自residence_province_code,license_province_code",
+    "name": "",
+    "type": "integer",
+    "condition": "compareProvinceCode(residence_province_code,license_province_code)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_guangxi",
+    "remark": "衍生自company_province_code",
+    "name": "",
+    "type": "integer",
+    "condition": "compareProvinceCode(company_province_code,6)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "is_yunnan",
+    "remark": "衍生自company_province_code",
+    "name": "",
+    "type": "integer",
+    "condition": "compareProvinceCode(company_province_code,29)",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "license_province_level",
+    "remark": "衍生自license_province_code",
+    "name": "license_province_code",
+    "type": "integer",
+    "condition": "provinceLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "month_pay_level",
+    "remark": "衍生自month_pay",
+    "name": "month_pay",
+    "type": "integer",
+    "condition": "monthPayLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "residence_province_level",
+    "remark": "衍生自residence_province_code",
+    "name": "residence_province_code",
+    "type": "integer",
+    "condition": "provinceLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "settlement_rate_level",
+    "remark": "衍生自settlement_rate",
+    "name": "settlement_rate",
+    "type": "integer",
+    "condition": "custRate()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "style_id_level",
+    "remark": "衍生自style_id",
+    "name": "style_id",
+    "type": "integer",
+    "condition": "styleIdLevel()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "tail_payment_rate_level",
+    "remark": "衍生自tail_payment_rate",
+    "name": "tail_payment_rate",
+    "type": "integer",
+    "condition": "paymentRate()",
+    "formula": "hatch_field"
+  },
+  {
+    "id": "tail_payment_level",
+    "remark": "衍生自tail_payment",
+    "name": "tail_payment",
+    "type": "integer",
+    "condition": "downPayment()",
+    "formula": "hatch_field"
+  }
+]
