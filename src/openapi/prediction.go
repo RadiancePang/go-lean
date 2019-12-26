@@ -5,12 +5,13 @@ import (
 	"go-learn/common/define"
 	"go-learn/components/tools"
 	"go-learn/config"
+	"go-learn/repository/sql"
 	"net/http"
 )
 
-func Prediction(engine *gin.RouterGroup) {
+func (apiModel *ApiModel) Prediction(engine *gin.RouterGroup) {
 
-	engine.POST("/prediction", predict)
+	engine.POST("/prediction", apiModel.predict)
 
 }
 
@@ -27,7 +28,7 @@ type PredictionRequest struct {
 	User interface{} `json:"user"`
 }
 
-func predict(context *gin.Context) {
+func (apiModel *ApiModel) predict(context *gin.Context) {
 
 	var scoreReq PredictionRequest
 
@@ -43,11 +44,17 @@ func predict(context *gin.Context) {
 
 		var apiResultInfo ApiResultInfo
 
+		busiInfo := &sql.FintechBusinessInfo{
+			OrderId: "test",
+		}
+
 		if tools.IsNotEmpty(modelFeature.ServiceName) {
+
+			apiModel.Service.SqlTemplate.FetchEntity(busiInfo)
 
 		} else {
 
-			apiResultInfo = NewApiResult(define.ModelSericeNotExist, nil, err)
+			apiResultInfo = NewApiResult(define.ModelSericeNotExist, busiInfo, err)
 
 		}
 

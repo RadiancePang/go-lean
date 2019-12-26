@@ -9,32 +9,45 @@ import (
 	"time"
 )
 
-var cluster redisc.Cluster
+type RedisTemplate struct {
+	cluster     redisc.Cluster
+	redisConfig model.RedisConfig
+}
 
-var redisConfig model.RedisConfig
+type poolTemplate struct {
+	redisConfig model.RedisConfig
+}
 
-func New() {
+func New() (redis *RedisTemplate) {
 
-	redisConfig = config.WebMetaConfig.Redis
+	redisConfig := config.WebMetaConfig.Redis
 
-	cluster = redisc.Cluster{
+	poolTemplate := poolTemplate{redisConfig: redisConfig}
+
+	cluster := redisc.Cluster{
 
 		StartupNodes: redisConfig.Cluster.Nodes,
 
-		DialOptions: initDialOptions(),
+		DialOptions: initDialOptions(redisConfig),
 
-		CreatePool: creatPool,
+		CreatePool: poolTemplate.creatPool,
 	}
 
 	if err := cluster.Refresh(); err != nil {
 
 		logger.EngineLogger.Error(err.Error())
 
+	} else {
+
+		redis = &RedisTemplate{redisConfig: redisConfig, cluster: cluster}
+
 	}
+
+	return
 
 }
 
-func initDialOptions() []redis.DialOption {
+func initDialOptions(redisConfig model.RedisConfig) []redis.DialOption {
 
 	conntectTimeout := time.Duration(redisConfig.Connection.ConnectTimeout) * time.Second
 
@@ -50,17 +63,17 @@ func initDialOptions() []redis.DialOption {
 
 }
 
-func creatPool(address string, options ...redis.DialOption) (*redis.Pool, error) {
+func (poolTemplate poolTemplate) creatPool(address string, options ...redis.DialOption) (*redis.Pool, error) {
 
 	redispool := &redis.Pool{
 
-		MaxActive: redisConfig.Pool.MaxActive,
+		MaxActive: poolTemplate.redisConfig.Pool.MaxActive,
 
-		MaxIdle: redisConfig.Pool.MaxIdle,
+		MaxIdle: poolTemplate.redisConfig.Pool.MaxIdle,
 
-		IdleTimeout: time.Duration(redisConfig.Pool.IdleTimeout) * time.Second,
+		IdleTimeout: time.Duration(poolTemplate.redisConfig.Pool.IdleTimeout) * time.Second,
 
-		MaxConnLifetime: time.Duration(redisConfig.Pool.MaxConnLifetime) * time.Second,
+		MaxConnLifetime: time.Duration(poolTemplate.redisConfig.Pool.MaxConnLifetime) * time.Second,
 
 		Dial: func() (conn redis.Conn, e error) {
 
@@ -78,7 +91,7 @@ func creatPool(address string, options ...redis.DialOption) (*redis.Pool, error)
 
 		TestOnBorrow: func(c redis.Conn, t time.Time) error {
 
-			if time.Since(t) < time.Duration(redisConfig.Pool.TestOnBorrow)*time.Second {
+			if time.Since(t) < time.Duration(poolTemplate.redisConfig.Pool.TestOnBorrow)*time.Second {
 				return nil
 			}
 			_, err := c.Do("PING")
@@ -90,14 +103,14 @@ func creatPool(address string, options ...redis.DialOption) (*redis.Pool, error)
 
 }
 
-func Get(key string) (string, error) {
+func (template *RedisTemplate) Get(key string) (string, error) {
 
-	return redis.String(cluster.Get().Do("GET", key))
+	return redis.String(template.cluster.Get().Do("GET", key))
 
 }
 
-func Set(key string, value interface{}) (string, error) {
+func (template *RedisTemplate) Set(key string, value interface{}) (string, error) {
 
-	return redis.String(cluster.Get().Do("SET", key, value))
+	return redis.String(template.cluster.Get().Do("SET", key, value))
 
 }

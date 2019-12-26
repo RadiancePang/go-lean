@@ -1,7 +1,5 @@
 package sql
 
-import "go-learn/components/orm"
-
 type FintechBusinessInfo struct {
 	OrderId string `gorm:"column:order_id"`
 
@@ -16,9 +14,9 @@ func (FintechBusinessInfo) TableName() string {
 
 }
 
-func (report *FintechBusinessInfo) FetchEntity() {
+func (tmp *Template) FetchEntity(report *FintechBusinessInfo) {
 
-	orm.Db.Where("sys_id = ? and order_id = ?", report.SysId, report.OrderId).Order("update_time desc").First(report)
+	tmp.DB.Where("sys_id = ? and order_id = ?", report.SysId, report.OrderId).Order("update_time desc").First(report)
 
 	return
 

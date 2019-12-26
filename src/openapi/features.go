@@ -7,9 +7,9 @@ import (
 	"net/http"
 )
 
-func Features(engine *gin.RouterGroup) {
+func (apiModel *ApiModel) Features(engine *gin.RouterGroup) {
 
-	engine.POST("/features", processFeatures)
+	engine.POST("/features", apiModel.processFeatures)
 
 }
 
@@ -24,7 +24,7 @@ type FeaturesRequest struct {
 	ModelId string `json:"modelId" binding:"required"`
 }
 
-func processFeatures(context *gin.Context) {
+func (apiModel *ApiModel) processFeatures(context *gin.Context) {
 
 	var featureRequest FeaturesRequest
 

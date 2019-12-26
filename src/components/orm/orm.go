@@ -9,8 +9,6 @@ import (
 	"time"
 )
 
-var Db *gorm.DB
-
 func NewMySQL() (db *gorm.DB) {
 
 	dataSouce := config.WebMetaConfig.Web.DataSource

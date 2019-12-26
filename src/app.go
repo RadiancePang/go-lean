@@ -2,11 +2,10 @@ package main
 
 import (
 	"flag"
-	"go-learn/components/cache"
-	"go-learn/components/orm"
 	"go-learn/components/tools"
 	"go-learn/config"
 	"go-learn/controller"
+	"go-learn/services"
 )
 
 func main() {
@@ -26,12 +25,9 @@ func main() {
 	//加载配置信息
 	config.InitMeta(configName)
 
-	//初始化连接池
-	orm.Db = orm.NewMySQL()
+	//初始化service
+	service := services.New()
 
-	//初始化redis
-	cache.New()
-
-	controller.Start()
+	controller.Start(service)
 
 }

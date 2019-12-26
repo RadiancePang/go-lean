@@ -1,6 +1,7 @@
 package components
 
 import (
+	"go-learn/components/logger"
 	"go.uber.org/zap"
 )
 
