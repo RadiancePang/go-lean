@@ -9,8 +9,11 @@ go学习项目
 >go mod download 依赖下载
 
 ## 配置信息
-ymal
-ini
+
+>yaml
+
+>ini
+
 ## 日志说明
 
 * EngineLogger 引擎相关日志记录
